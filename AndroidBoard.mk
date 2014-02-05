@@ -5,4 +5,4 @@ include $(CLEAR_VARS)
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 
 # include the non-open-source counterpart to this file
--include vendor/thl/w8/AndroidBoardVendor.mk
+-include vendor/iPhone/i5s/AndroidBoardVendor.mk
