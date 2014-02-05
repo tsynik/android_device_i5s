@@ -23,7 +23,7 @@ persist.mtk.aee.aed=off \
 ro.debuggable=1 \
 persist.service.adb.enable=1 \
 persist.service.acm.enable=0 \
-persist.sys.usb.config=mass_storage,adb \
+persist.sys.usb.config=mass_storage \
 ro.mount.fs=UBIFS
 
 TARGET_BOOTLOADER_BOARD_NAME := i5s
