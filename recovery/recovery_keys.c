@@ -1,3 +1,4 @@
+#define PROGRAM_NAME "recovery_keys"
 #include <linux/input.h>
 #include "recovery_ui.h"
 #include "common.h"
