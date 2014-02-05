@@ -3,6 +3,7 @@
 /boot			mtd			boot
 /cache			ubifs		cache
 /data			ubifs		userdata
+/logo			mtd			logo
 /misc			mtd			misc
 /recovery		mtd			recovery
 /sdcard			vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0
