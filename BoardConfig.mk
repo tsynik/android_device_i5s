@@ -33,8 +33,14 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 # Recovery
 TARGET_RECOVERY_FSTAB := device/iPhone/i5s/recovery/recovery.fstab
 TARGET_RECOVERY_INITRC := device/iPhone/i5s/recovery/recovery.rc
+# Home Button As Back
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/iPhone/i5s/recovery/recovery_keys.c
-BOARD_HAS_FLIPPED_SCREEN := true
+# For Inverted Screen
+#BOARD_HAS_FLIPPED_SCREEN := true
+# For Inverted Touch
+RECOVERY_TOUCHSCREEN_FLIP_X := true
+RECOVERY_TOUCHSCREEN_FLIP_Y := true
+# MTK part sizes
 CWM_EMMC_BOOT_DEVICE_NAME := /dev/bootimg
 CWM_EMMC_BOOT_DEVICE_SIZE := 0x00600000
 CWM_EMMC_RECOVERY_DEVICE_NAME := /dev/recovery
