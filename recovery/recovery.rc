@@ -1,9 +1,11 @@
 # recovery init script
 on early-init
     start ueventd
+    start healthd
 
 on init
     export PATH /sbin
+    export LD_LIBRARY_PATH .:/sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
@@ -25,12 +27,17 @@ on init
     chmod 0775 /tmp
 
     write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 0bb4
+    write /sys/class/android_usb/android0/idVendor 0BB4
     write /sys/class/android_usb/android0/idProduct 0C03
     write /sys/class/android_usb/android0/functions mass_storage,adb
     write /sys/class/android_usb/android0/iManufacturer ${ro.product.manufacturer}
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+
+    # setup zRAM (fix for memory issues with ubifs mounts)   
+    write /sys/block/zram0/disksize 201326592
+    #exec /sbin/mkswap /dev/block/zram0
+    #exec /sbin/swapon /dev/block/zram0
 
 on boot
 
@@ -43,15 +50,21 @@ on boot
 service ueventd /sbin/ueventd
     critical
 
+service healthd /sbin/healthd -n
+    critical
+
 service recovery /sbin/recovery
+
+service zram /sbin/swapper.sh
+    oneshot
 
 service adbd /sbin/adbd recovery
     disabled
+    socket adbd stream 660 system system
 
 # Recovery will start adb once it has checked the keys
 
 on property:ro.debuggable=1
-    start adbd
     setprop service.adb.root 1
     
 # Restart adbd so it can run as root
