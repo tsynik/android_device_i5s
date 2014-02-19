@@ -35,8 +35,9 @@ TARGET_RECOVERY_FSTAB := device/iPhone/i5s/recovery/recovery.fstab
 TARGET_RECOVERY_INITRC := device/iPhone/i5s/recovery/recovery.rc
 # Home Button As Back
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/iPhone/i5s/recovery/recovery_keys.c
-# SLIM TWRP
+# SLIM TWRP as much as possible
 TW_NO_EXFAT := true
+TARGET_USERIMAGES_USE_EXT4 := false
 # For Inverted Screen
 BOARD_HAS_FLIPPED_SCREEN := true
 # For Inverted Touch
